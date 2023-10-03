@@ -5,7 +5,7 @@ let productos = [
     {id:4, nombre:"American Original '60S", estado:"Excelente", descripcion:"Bajo Electrico | Jazz Bass | American Original '60S | 4C | RWN | Estuche rígido de estilo vintage | Sunburst", imagen:"https://myscustomshoptienda.com.ar/20411-large_default/019-0130-800-019-0130-800.jpg", precio:3099.00, categoria:"bajos"},
     {id:5, nombre:"Fender Coronado Bass", estado:"Excelente", descripcion:"Bajo Electrico | Coronado Bass | 4C | RWN | 1/2 caja | 2 x HB | Candy Apple Red",imagen:"https://myscustomshoptienda.com.ar/8768-large_default/024-3200-509-024-3200-509.jpg", precio:3000.00, categoria:"bajos"},
     {id:6, nombre:"Player Series Mexico Jazz Bass", estado:"Bien cuidada", descripcion:"Bajo Electrico | Jazz Bass | Player Series | 4C | PFN | Sunburst",imagen:"https://myscustomshoptienda.com.ar/20379-large_default/player-series-mexico-jazz-bass-014-9903-500.jpg", precio:2100.00, categoria:"bajos"},
-    {id:7, nombre:"Elixir Strings", estado:"Nuevas", descripcion:"Acoustic 80/20 Bronze with NANOWEB Coating - Light Guitar Strings (.012-.053)",imagen:"https://m.media-amazon.com/images/I/91uQmrejH9L._AC_SL1500_.jpg", precio:50.00, categoria:"cuerdas"},
+    {id:7, nombre:"Elixir Strings", estado:"Nuevas", descripcion:"Acoustic 80/20 Bronze with NANOWEB Coating - Light Guitar Strings (.012-.053)",imagen:"https://m.media-amazon.com/images/I/91DAabD2cJL._AC_SL1500_.jpg", precio:50.00, categoria:"cuerdas"},
     {id:8, nombre:"Encordado Guitarra Eléctrica Magma Acero 013/060 Heavy", estado:"Nuevas", descripcion:"Encordado Magma nuevo 0.13",imagen:"https://http2.mlstatic.com/D_NQ_NP_2X_932036-MLU54985896177_052023-F.webp", precio:5.00, categoria:"cuerdas"},
 ];
 
