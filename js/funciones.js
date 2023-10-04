@@ -34,7 +34,7 @@ const renderProductos = () => {
         </div>`;
     });
 
-    document.getElementById("contenido").innerHTML = contenidoHTML;
+    document.getElementById("productos").innerHTML = contenidoHTML;
 }
 
 const renderCarrito = () => {
