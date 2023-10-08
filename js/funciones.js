@@ -27,8 +27,8 @@ const renderProductos = () => {
         <a href="producto.html" onclick="guardarProductoLS(${producto.id})"><img src="${producto.imagen}" class="card-img-top" alt="${producto.nombre}"></a>
         <div class="card-body">
           <h5 class="card-title">${producto.nombre}</h5>
-          <p class="card-text">$${producto.precio}</p>
-          <a href="#" class="btn btn-warning" onclick="agregarProductoCarrito(${producto.id})">Agregar (+)</a>
+          <p class="card-text">u$s${producto.precio}</p>
+          <a href="#" class="btn btn-danger" onclick="agregarProductoCarrito(${producto.id})">Agregar (+)</a>
         </div>
         </div>
         </div>`;
@@ -44,18 +44,17 @@ const renderCarrito = () => {
     if (cantProductosCarrito() > 0) {
         contenidoHTML = `<table class="table">
         <tr>
-        <td colspan="7" class="text-end"><button class="btn btn-warning" onclick="vaciarCarrito()" title="Vaciar Carrito">Vaciar Carrito [x]</button></td>
+        <td colspan="7" class="text-end"><button class="btn btn-danger" onclick="vaciarCarrito()" title="Vaciar Carrito">Vaciar Carrito [x]</button></td>
         </tr>`;
 
         productos.forEach(producto => {
             contenidoHTML += `<tr>
             <td><img src="${producto.imagen}" alt="${producto.nombre}" width="64"></td>
             <td class="align-middle">${producto.nombre}</td>
-            <td class="align-middle">${producto.calorias} kcal</td>
             <td class="align-middle">$${producto.precio}</td>
-            <td class="align-middle"><button class="btn btn-warning rounded-circle" onclick="decrementarCantidadProducto(${producto.id})">-</button> ${producto.cantidad} <button class="btn btn-warning rounded-circle" onclick="incrementarCantidadProducto(${producto.id})">+</button></td>
+            <td class="align-middle"><button class="btn btn-danger rounded-circle" onclick="decrementarCantidadProducto(${producto.id})">-</button> ${producto.cantidad} <button class="btn btn-danger rounded-circle" onclick="incrementarCantidadProducto(${producto.id})">+</button></td>
             <td class="align-middle">$${producto.precio * producto.cantidad}</td>
-            <td class="align-middle text-end"><img src="images/trash.svg" alt="Eliminar" width="24" onclick="eliminarProductoCarrito(${producto.id})"></td>
+            <td class="align-middle text-end"><img src="media/trash.svg" alt="Eliminar" width="24" onclick="eliminarProductoCarrito(${producto.id})"></td>
             </tr>`;
         });
 
@@ -67,10 +66,15 @@ const renderCarrito = () => {
         </tr>
         </table>`;
     } else {
-        contenidoHTML = `<div class="alert alert-warning my-5 text-center" role="alert">No se encontaron Productos en el Carrito!</div>`;
+        contenidoHTML = `<div class="alert alert-danger my-5 text-center" role="alert">No se encontaron Productos en el Carrito!</div>`;
     }
     
     document.getElementById("contenido").innerHTML = contenidoHTML;
+}
+
+const renderBotonCarrito = () => {
+    let totalCarrito = document.getElementById("totalCarrito");
+    totalCarrito.innerHTML = cantProductosCarrito();
 }
 
 const guardarCarritoLS = (carrito) => {
@@ -167,10 +171,6 @@ const sumaProductosCarrito = () => {
     return carrito.reduce((acumulador, item) => acumulador += item.precio * item.cantidad, 0);
 }
 
-const renderBotonCarrito = () => {
-    let totalCarrito = document.getElementById("totalCarrito");
-    totalCarrito.innerHTML = cantProductosCarrito();
-}
 
 const renderProducto = () => {
     const idProducto = cargarProductoLS();
@@ -178,8 +178,7 @@ const renderProducto = () => {
 
     document.getElementById("imagenProducto").src = producto.imagen;
     document.getElementById("tituloProducto").innerHTML = producto.nombre;
-    document.getElementById("caloriasProducto").innerHTML = producto.calorias + " kcal";
     document.getElementById("descripcionProducto").innerHTML = producto.descripcion;
-    document.getElementById("precioProducto").innerHTML = "$" + producto.precio;
-    document.getElementById("botonAgregar").innerHTML= `<a href="#" class="btn btn-warning" onclick="agregarProductoCarrito(${producto.id})">Agregar (+)</a>`;
+    document.getElementById("precioProducto").innerHTML = "u$s" + producto.precio;
+    document.getElementById("botonAgregar").innerHTML= `<a href="#" class="btn btn-danger" onclick="agregarProductoCarrito(${producto.id})">Agregar (+)</a>`;
 }
