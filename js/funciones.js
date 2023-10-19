@@ -51,9 +51,9 @@ const renderCarrito = () => {
             contenidoHTML += `<tr>
             <td><img src="${producto.imagen}" alt="${producto.nombre}" width="64"></td>
             <td class="align-middle">${producto.nombre}</td>
-            <td class="align-middle">$${producto.precio}</td>
+            <td class="align-middle">u$s${producto.precio}</td>
             <td class="align-middle"><button class="btn btn-danger rounded-circle" onclick="decrementarCantidadProducto(${producto.id})">-</button> ${producto.cantidad} <button class="btn btn-danger rounded-circle" onclick="incrementarCantidadProducto(${producto.id})">+</button></td>
-            <td class="align-middle">$${producto.precio * producto.cantidad}</td>
+            <td class="align-middle">u$s${producto.precio * producto.cantidad}</td>
             <td class="align-middle text-end"><img src="media/trash.svg" alt="Eliminar" width="24" onclick="eliminarProductoCarrito(${producto.id})"></td>
             </tr>`;
         });
@@ -63,10 +63,16 @@ const renderCarrito = () => {
         <td>Total</td>
         <td><b>$${sumaProductosCarrito()}</b></td>
         <td>&nbsp;</td>
+        <td colspan="7" class="text-end"><button class="btn btn-danger" onclick="finalizarCompra()" title="Finalizar compra">Finalizar compra</button></td>
         </tr>
         </table>`;
     } else {
         contenidoHTML = `<div class="alert alert-danger my-5 text-center" role="alert">No se encontaron Productos en el Carrito!</div>`;
+        Swal.fire({
+            icon: 'error',
+            title: 'Carrito vacio!',
+            footer: '<a href="index.html">Volver a la tienda?</a>'
+          })
     }
     
     document.getElementById("contenido").innerHTML = contenidoHTML;
@@ -85,6 +91,25 @@ const cargarCarritoLS = () => {
     return JSON.parse(localStorage.getItem("carrito")) || [];
 }
 
+const finalizarCompra = () => {
+    Swal.fire({
+        title: 'El valor es de u$s: ' + sumaProductosCarrito(),
+        Text: 'Finalizar compra?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Comprar',
+        denyButtonText: `Cancelar`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          Swal.fire('Compra realizada!', '', 'success')
+          vaciarCarrito()
+        } else if (result.isDenied) {
+          Swal.fire('Siga comprando', '')
+        }
+      })
+}
+
 const guardarProductoLS = (id) => {
     localStorage.setItem("producto", JSON.stringify(id));
 }
@@ -101,6 +126,11 @@ const vaciarCarrito = () => {
 
 const agregarProductoCarrito = (id) => {
     const carrito = cargarCarritoLS();
+    Swal.fire(
+        'Agregado al carrito!',
+        'Ve a chequearlo!',
+        'success'
+      )
 
     if (estaEnElCarrito(id)) {
         const producto = carrito.find(item => item.id === id);
@@ -182,3 +212,18 @@ const renderProducto = () => {
     document.getElementById("precioProducto").innerHTML = "u$s" + producto.precio;
     document.getElementById("botonAgregar").innerHTML= `<a href="#" class="btn btn-danger" onclick="agregarProductoCarrito(${producto.id})">Agregar (+)</a>`;
 }
+
+const login = async () => {
+    const { value: email } = await Swal.fire({
+        title: 'Inicie sesión',
+        input: 'email',
+        inputLabel: 'Ingrese su Email',
+        inputPlaceholder: 'Ingrese su Email'
+      })
+      
+      if (email) {
+        Swal.fire(`Bienvenido/a: ${email}`)
+      }
+    
+    }
+document.querySelector("#btn-login").onclick = login;
