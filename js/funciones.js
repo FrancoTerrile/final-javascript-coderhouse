@@ -210,6 +210,7 @@ const renderProducto = () => {
     document.getElementById("tituloProducto").innerHTML = producto.nombre;
     document.getElementById("descripcionProducto").innerHTML = producto.descripcion;
     document.getElementById("precioProducto").innerHTML = "u$s" + producto.precio;
+    document.getElementById("precioProductoPesos").innerHTML = "ARS" + producto.precio;
     document.getElementById("botonAgregar").innerHTML= `<a href="#" class="btn btn-danger" onclick="agregarProductoCarrito(${producto.id})">Agregar (+)</a>`;
 }
 
